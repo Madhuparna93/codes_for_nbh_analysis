@@ -1,0 +1,103 @@
+# Load necessary library
+library(patchwork)
+library(readxl)
+library(spatstat)
+
+# Read coordinates for each life stage from Excel files
+coords_stage1 <- read_excel("/Users/madhuparnachatterjee/Desktop/misc/Adult_coords.xlsx")
+coords_stage2 <- read_excel("/Users/madhuparnachatterjee/Desktop/misc/SaplingI_cooords.xlsx")
+coords_stage3 <- read_excel("/Users/madhuparnachatterjee/Desktop/misc/SaplingII_coords.xlsx")
+coords_stage4 <- read_excel("/Users/madhuparnachatterjee/Desktop/misc/Seedling.xlsx")
+coords_stage5 <- read_excel("/Users/madhuparnachatterjee/Desktop/misc/all.xlsx")
+
+# Create ppp objects for each life stage
+x1 <- coords_stage1$x
+y1 <- coords_stage1$y
+x_min1 <- min(x1)
+x_max1 <- max(x1)
+y_min1 <- min(y1)
+y_max1 <- max(y1)
+species_ppp1 <- ppp(x1, y1, window = owin(c(x_min1, x_max1), c(y_min1, y_max1)))
+kf <- Kest(species_ppp1, correction = "Ripley")
+plot(kf)
+kf.env <- envelope(species_ppp1, Kest, correction = "Ripley", verbose = F)
+plot(kf.env)
+# calculate envelope around L-hat estimates.
+lf.env <- envelope(species_ppp1, Lest, correction = "Ripley", verbose = F)
+plot(lf.env)
+# plot recentered L results
+par(cex.lab = 1.6, cex.axis = 1.6, cex.main = 1.2)
+plot(lf.env, . - r ~ r, main="", ylab = "L(r) - r", ylim = c(-5, 20), xlim = c(0, 90),lwd=2, legend=FALSE)
+
+x2 <- coords_stage2$x
+y2 <- coords_stage2$y
+x_min2 <- min(x2)
+x_max2 <- max(x2)
+y_min2 <- min(y2)
+y_max2 <- max(y2)
+species_ppp2 <- ppp(x2, y2, window = owin(c(x_min2, x_max2), c(y_min2, y_max2)))
+kf <- Kest(species_ppp2, correction = "Ripley")
+plot(kf)
+kf.env <- envelope(species_ppp2, Kest, correction = "Ripley", verbose = F)
+plot(kf.env)
+# calculate envelope around L-hat estimates.
+lf.env <- envelope(species_ppp2, Lest, correction = "Ripley", verbose = F)
+plot(lf.env)
+# plot recentered L results
+par(cex.lab = 1.6, cex.axis = 1.6, cex.main = 1.2)
+plot(lf.env, . - r ~ r, main="", ylab = "L(r) - r", ylim = c(-5, 20), xlim = c(0, 90),lwd=2, legend=FALSE)
+
+x3 <- coords_stage3$x
+y3 <- coords_stage3$y
+x_min3 <- min(x3)
+x_max3 <- max(x3)
+y_min3 <- min(y3)
+y_max3 <- max(y3)
+species_ppp3 <- ppp(x3, y3, window = owin(c(x_min3, x_max3), c(y_min3, y_max3)))
+kf <- Kest(species_ppp3, correction = "Ripley")
+plot(kf)
+kf.env <- envelope(species_ppp3, Kest, correction = "Ripley", verbose = F)
+plot(kf.env)
+# calculate envelope around L-hat estimates.
+lf.env <- envelope(species_ppp3, Lest, correction = "Ripley", verbose = F)
+plot(lf.env)
+# plot recentered L results
+par(cex.lab = 1.6, cex.axis = 1.6, cex.main = 1.2)
+plot(lf.env, . - r ~ r, main="", ylab = "L(r) - r", ylim = c(-5, 20), xlim = c(0, 90),lwd=2, legend=FALSE)
+
+x4 <- coords_stage4$x
+y4 <- coords_stage4$y
+x_min4 <- min(x4)
+x_max4 <- max(x4)
+y_min4 <- min(y4)
+y_max4 <- max(y4)
+species_ppp4 <- ppp(x4, y4, window = owin(c(x_min4, x_max4), c(y_min4, y_max4)))
+kf <- Kest(species_ppp4, correction = "Ripley")
+plot(kf)
+kf.env <- envelope(species_ppp4, Kest, correction = "Ripley", verbose = F)
+plot(kf.env)
+# calculate envelope around L-hat estimates.
+lf.env <- envelope(species_ppp4, Lest, correction = "Ripley", verbose = F)
+plot(lf.env)
+# plot recentered L results
+par(cex.lab = 1.6, cex.axis = 1.6, cex.main = 1.2)
+plot(lf.env, . - r ~ r, main="", ylab = "L(r) - r", ylim = c(-5, 20), xlim = c(0, 90), lwd=2,legend=FALSE)
+
+x5 <- coords_stage5$x
+y5 <- coords_stage5$y
+x_min5 <- min(x5)
+x_max5 <- max(x5)
+y_min5 <- min(y5)
+y_max5 <- max(y5)
+species_ppp5 <- ppp(x5, y5, window = owin(c(x_min5, x_max5), c(y_min5, y_max5)))
+kf <- Kest(species_ppp5, correction = "Ripley")
+plot(kf)
+kf.env <- envelope(species_ppp5, Kest, correction = "Ripley", verbose = F)
+plot(kf.env)
+# calculate envelope around L-hat estimates.
+lf.env <- envelope(species_ppp5, Lest, correction = "Ripley", verbose = F)
+plot(lf.env)
+# plot recentered L results
+par(cex.lab = 1.6, cex.axis = 1.6, cex.main = 1.2)
+plot(lf.env, . - r ~ r, main="", ylab = "L(r) - r", ylim = c(-5, 20), xlim = c(0, 90), lwd=2,legend=FALSE)
+
